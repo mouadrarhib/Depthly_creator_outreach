@@ -1,0 +1,158 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Depthly design tokens (shadcn HSL format) ────────────────────────────
+   :root and .dark are identical — this is a dark-mode-only app.
+   ─────────────────────────────────────────────────────────────────────── */
+@layer base {
+  :root {
+    --background:           240 4% 5%;
+    --foreground:           240 11% 92%;
+    --card:                 240 5% 8%;
+    --card-foreground:      240 11% 92%;
+    --popover:              240 5% 8%;
+    --popover-foreground:   240 11% 92%;
+    --primary:              213 100% 65%;
+    --primary-foreground:   0 0% 100%;
+    --secondary:            240 4% 13%;
+    --secondary-foreground: 240 11% 92%;
+    --muted:                240 4% 13%;
+    --muted-foreground:     240 5% 49%;
+    --accent:               240 4% 13%;
+    --accent-foreground:    240 11% 92%;
+    --destructive:          0 68% 65%;
+    --destructive-foreground: 0 0% 100%;
+    --border:               240 4% 18%;
+    --input:                240 4% 18%;
+    --ring:                 213 100% 65%;
+    --radius:               0.625rem;
+  }
+
+  /* Keep .dark identical — dark-only app, no light-mode switching */
+  .dark {
+    --background:           240 4% 5%;
+    --foreground:           240 11% 92%;
+    --card:                 240 5% 8%;
+    --card-foreground:      240 11% 92%;
+    --popover:              240 5% 8%;
+    --popover-foreground:   240 11% 92%;
+    --primary:              213 100% 65%;
+    --primary-foreground:   0 0% 100%;
+    --secondary:            240 4% 13%;
+    --secondary-foreground: 240 11% 92%;
+    --muted:                240 4% 13%;
+    --muted-foreground:     240 5% 49%;
+    --accent:               240 4% 13%;
+    --accent-foreground:    240 11% 92%;
+    --destructive:          0 68% 65%;
+    --destructive-foreground: 0 0% 100%;
+    --border:               240 4% 18%;
+    --input:                240 4% 18%;
+    --ring:                 213 100% 65%;
+    --radius:               0.625rem;
+  }
+
+  /* ── Legacy Depthly CSS-var tokens (components still reference these) ── */
+  :root {
+    --color-brand:        #4B9EFF;
+    --color-brand-hover:  #6BAFFF;
+    --color-brand-subtle: rgba(75, 158, 255, 0.12);
+
+    --color-surface-base:    #0D0D10;
+    --color-surface-raised:  #141417;
+    --color-surface-overlay: #222228;
+
+    --color-border:        #2E2E38;
+    --color-border-subtle: rgba(255, 255, 255, 0.04);
+
+    --color-text:       #E8E6F0;
+    --color-text-muted: #7A7890;
+    --color-text-faint: #3D3B4E;
+
+    --color-streak: #C8FF64;
+
+    --color-success: #3DD68C;
+    --color-warning: #F5A623;
+    --color-error:   #F25C5C;
+    --color-info:    #4B9EFF;
+  }
+
+  /* ── Global resets ──────────────────────────────────────────────────── */
+  html {
+    scroll-behavior: smooth;
+    /* `hidden` turns the other axis into `auto`, which made body a second
+       vertical scroll container when GSAP-translated landing sections
+       briefly extended beyond their layout boxes. `clip` prevents horizontal
+       overflow without creating a nested scroll owner. */
+    overflow-x: clip;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-surface-base);
+    color: var(--color-text);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-family: 'Inter', system-ui, sans-serif;
+    overflow-x: clip;
+    min-height: 100dvh;
+  }
+
+  h1, h2, h3, h4, h5, h6, p { margin: 0; }
+  h1 { letter-spacing: -0.04em; font-weight: 500; }
+  h2 { letter-spacing: -0.03em; font-weight: 500; }
+  h3 { letter-spacing: -0.01em; font-weight: 500; }
+
+  /* Data — timers, durations, session counts — always mono */
+  .font-data {
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.02em;
+  }
+
+  button, [role="button"] { cursor: pointer; }
+
+  :focus-visible {
+    outline: 2px solid #4B9EFF;
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  * { box-sizing: border-box; }
+
+  /* ── Custom scrollbars — applies globally, including nested scroll
+     containers like AppLayout's <main> and Log/Todo side panels ──────── */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-border) transparent;
+  }
+
+  *::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background-color: var(--color-border);
+    border-radius: 8px;
+  }
+
+  *::-webkit-scrollbar-thumb:hover {
+    background-color: var(--color-text-faint);
+  }
+
+  /* Native <input type="date"|"time"> center their value on iOS/WebKit no
+     matter what text-align is set on the input itself — this is the one
+     part of these inputs WebKit exposes a pseudo-element for, and without
+     it every date/time field in the app reads as centered text with no
+     affordance icon, visually inconsistent with the left-aligned,
+     chevron-trailing Select fields sitting right next to them. */
+  input[type="date"]::-webkit-date-and-time-value,
+  input[type="time"]::-webkit-date-and-time-value {
+    text-align: left;
+  }
+}
