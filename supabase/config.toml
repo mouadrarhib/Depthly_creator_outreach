@@ -1,8 +1,8 @@
 project_id = "depthly-creator-outreach"
 
 [auth]
-site_url = "https://depthly.mouadrarhib.com"
-additional_redirect_urls = ["https://depthly.mouadrarhib.com/discovery", "http://localhost:5173/discovery"]
+site_url = "https://creator.outreach.getdepthly.com"
+additional_redirect_urls = ["https://creator.outreach.getdepthly.com/discovery", "http://localhost:5173/discovery"]
 enable_signup = false
 enable_anonymous_sign_ins = false
 
